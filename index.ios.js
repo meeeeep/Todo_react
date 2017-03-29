@@ -114,11 +114,12 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
   _renderItem(item) {
 
     const onPress = () => {
-      AlertIOS.alert(
-        'Complete',
+      AlertIOS.prompt(
+        'Edit or Delete Item',
         null,
         [
-          {text: 'Complete', onPress: (text) => this.itemsRef.child(item._key).remove()},
+          {text: 'Edit', onPress: (text) => this.itemsRef.child(item._key).update({title: text})},
+          {text: 'Delete', onPress: (text) => this.itemsRef.child(item._key).remove()},
           {text: 'Cancel', onPress: (text) => console.log('Cancelled')}
         ]
       );
